@@ -352,6 +352,9 @@ svg.wave path.pulse{stroke-width:1.6}
 .hint.keep{right:auto;left:50%;bottom:44px;transform:translateX(-50%);background:none!important;padding:0;font-size:14px;animation:none!important}
 .frame.full iframe{opacity:0;transition:opacity .9s ease}
 .frame.full iframe.ready{opacity:1}
+.kvv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .7s ease;background:#000}
+.kvv.on{opacity:1}
+html.static .kvv{display:none}
 .frame img.ponly{display:none}
 .cover{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;cursor:pointer;background:linear-gradient(rgba(4,9,14,var(--dim,.66)),rgba(4,9,14,var(--dim,.66))),var(--still) center/cover no-repeat #060B12;transition:opacity .6s ease}
 .cover button{position:relative;width:132px;height:132px;border-radius:50%;border:1.5px solid rgba(255,255,255,.9);background:rgba(255,255,255,.08);cursor:pointer;display:grid;place-items:center;padding:0}
@@ -376,7 +379,7 @@ html.static .frame.full iframe[src]{opacity:1}
   html,body{height:auto;overflow:visible;background:#fff}
   #stage{position:static;transform:none!important;width:1920px;height:auto;overflow:visible}
   .slide{position:relative;visibility:visible!important;opacity:1!important;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  #prog,#zoom,.hint,.cover,.kvx .art img.glow{display:none!important}
+  #prog,#zoom,.hint,.cover,.kvv,.kvx .art img.glow{display:none!important}
   .p3 .scene,.p3 .p3bg,.p3 .fl{display:none!important}
   .kvx .lock .w{text-shadow:none!important}
   .kvband{-webkit-mask-image:none!important;mask-image:none!important;background:var(--pb) center bottom/1920px auto no-repeat!important}
@@ -825,31 +828,16 @@ html.static .hint{display:none!important}
   </div>
 </section>
 
-<!-- STANDEES: two, 3 ft x 6 ft, as on the floor plan. Drawn in the page so the wording is exact. -->
-<section class="slide" data-sec="Foyer" style="background:#E9E8E3">
+<!-- STANDEES: Rohan's design, two options -->
+<section class="slide" data-sec="Foyer">
   <div class="body">
     <div class="lab a a1">Standees</div>
-    <h2 class="m a a2">Welcome on LED. Directions in print.</h2>
-    <div class="stn a a3">
-      <figure>
-        <div class="sd led" style="background-image:url(assets/KV4-Fluted-glass-dark-1920.jpg)">
-          <em>Welcome</em><b>3CDN</b><span class="w">WAVELENGTH</span><span class="d">THE EXECUTIVE FORUM · 2027</span>
-        </div><i></i>
-        <figcaption>Welcome · LED screen · at the foyer entry</figcaption>
-      </figure>
-      <figure>
-        <div class="sd pr">
-          <b>3CDN</b><span class="w">WAVELENGTH</span><span class="d">THE EXECUTIVE FORUM · 2027</span>
-          <ul>
-            <li><svg viewBox="0 0 44 16"><path d="M43 8H2M9 1L2 8l7 7"/></svg>Magnolia</li>
-            <li><svg viewBox="0 0 44 16"><path d="M43 8H2M9 1L2 8l7 7"/></svg>1-on-1 booths</li>
-            <li class="rt">Bar<svg viewBox="0 0 44 16"><path d="M1 8h41M35 1l7 7-7 7"/></svg></li>
-          </ul>
-        </div><i></i>
-        <figcaption>Directions · print · beside the hall door</figcaption>
-      </figure>
+    <h2 class="m a a2">Welcome and directions</h2>
+    <div class="figs" style="grid-template-columns:1fr 1fr">
+      <figure class="a a3"><div class="im" style="height:476px"><img src="assets/Standees-OptA-Spiral-mockup.jpg" alt="Standees option A, Emerald spiral: a welcome standee and a directions standee"></div><figcaption><div class="lab">Option A</div><b>Emerald spiral</b></figcaption></figure>
+      <figure class="a a4"><div class="im" style="height:476px"><img src="assets/Standees-OptB-Aurora-mockup.jpg" alt="Standees option B, Aurora: a welcome standee and a directions standee"></div><figcaption><div class="lab">Option B</div><b>Aurora</b></figcaption></figure>
     </div>
-    <div class="note">Two standees, 3 ft × 6 ft. Signage carries the lockup and plain arrows only.</div>
+    <div class="note" style="left:auto;right:0;text-align:right">Two standees, 3 ft × 6 ft. Final wording and arrows follow the floor plan.<br>The final design follows the chosen key visual.</div>
   </div>
 </section>
 
@@ -932,12 +920,13 @@ html.static .hint{display:none!important}
    ================================================================ */
 var KEY_VISUALS = [
   { pick:true, lockup:'dark',  tag:'For LED and screens', name:'Fluted glass, dark',  img:'assets/KV4-Fluted-glass-dark-1920.jpg' },
-  { pick:true, lockup:'light', tag:'For print',           name:'Fluted glass, white', img:'assets/KV4-Fluted-glass-white-1920.jpg' },
-  { tag:'KV1', name:'Infinity',        img:'assets/KV1-Infinity-1920.jpg' },
-  { tag:'KV2', name:'Aurora',          img:'assets/KV2-Aurora-1920.jpg' },
+  { pick:true, lockup:'light', tag:'For print',           name:'Fluted glass, white', img:'assets/KV4-Fluted-glass-white-1920.jpg', video:'assets/kv4-fluted-glass-white-loop.mp4' },
+  { tag:'KV1', name:'Infinity',        img:'assets/KV1-Infinity-1920.jpg', video:'assets/kv1-infinity-loop.mp4' },
+  { tag:'KV2', name:'Aurora',          img:'assets/KV2-Aurora-1920.jpg', video:'assets/kv2-aurora-loop.mp4' },
   { tag:'KV3', name:'Glass waves',     img:'assets/KV3-Glass-waves-1920.jpg' },
-  { tag:'KV5', name:'Emerald spirals', img:'assets/KV5-Emerald-spirals-1920.jpg' }
+  { tag:'KV5', name:'Emerald spirals', img:'assets/KV5-Emerald-spirals-1920.jpg', video:'assets/kv5-emerald-spirals-loop.mp4' }
 ];
+/* video: an animated loop (MP4) that plays on that key visual's full-screen slide. The picture stays as the PDF version. */
 /* lockup:'dark' or 'light' replaces the title baked into the picture with one live title, so every skin
    carries exactly the same size of lockup. Leave it out for pictures whose own title should stay. */
 /* Pieces from the other work streams. true = the file is in assets/. */
@@ -973,7 +962,7 @@ var FILES = { motion:true, floorplan:true };
   var after=document.getElementById('kvMore')||document.getElementById('kvPick');
   KEY_VISUALS.forEach(function(k){
     var s=document.createElement('section'); s.className='slide ph nohd';
-    s.innerHTML=kvHTML(k,true);
+    s.innerHTML=kvHTML(k,true)+(k.video?'<video class="kvv" src="'+k.video+'" muted loop playsinline preload="metadata"></video>':'');
     after.parentNode.insertBefore(s,after.nextSibling); after=s;
   });
 
@@ -1163,9 +1152,10 @@ var FILES = { motion:true, floorplan:true };
   var cur=-1;
   function go(n,fromHash){
     n=Math.max(0,Math.min(slides.length-1,n)); if(n===cur) return;
-    if(cur>=0) slides[cur].classList.remove('active');
+    if(cur>=0){ slides[cur].classList.remove('active'); [].forEach.call(slides[cur].querySelectorAll('video.kvv'),function(v){ v.pause(); v.classList.remove('on'); }); }
     if(cur>=0 && !isStatic) [].forEach.call(slides[cur].querySelectorAll('iframe[data-src]'),function(f){ stopPlayer(f,false); });
     closeZoom(); cur=n; slides[cur].classList.add('active'); count(slides[cur]); flow(slides[cur]); portraits(slides[cur]);
+    if(!isStatic) [].forEach.call(slides[cur].querySelectorAll('video.kvv'),function(v){ try{ v.currentTime=0; }catch(e){} var pr=v.play(); var on=function(){ v.classList.add('on'); }; if(pr&&pr.then) pr.then(on,function(){}); else on(); });
     if(!isStatic) [].forEach.call(slides[cur].querySelectorAll('iframe[data-src]'),function(f){ stopPlayer(f,true); });
     prog.style.width=((cur+1)/slides.length*100)+'%';
     if(!fromHash) history.replaceState(null,'','#'+(cur+1));
